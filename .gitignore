@@ -12,3 +12,5 @@ miniprogram_npm
 package-lock.json
 project.config.json
 project.private.config.json
+pages/test
+pages/test/*

@@ -5,6 +5,7 @@ Page({
   },
   look(e){
     let url=e.target.dataset.url;
+    console.log(url)
     if(!url)
       url=this.data.url;
     wx.navigateTo({
