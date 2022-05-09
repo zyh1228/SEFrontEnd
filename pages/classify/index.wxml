@@ -16,25 +16,26 @@
 <!--如果有数据，才遍历项--> 
     <view wx:if="{{navRightItems.results}}"> 
       <block wx:for="{{navRightItems.results}}"> 
-        <view class="nav_right_items"> 
-          <navigator url="../classify/index?brand={{item.tree.id}}&typeid={{navRightItems.results[curIndex].category}}"> 
+        <view class="nav_right_items" > 
+          <!-- <navigator url="../classify/index?brand={{item.tree.id}}&typeid={{navRightItems.results[curIndex].category}}">  -->
   <!--用view包裹图片组合，如果有图片就用，无图片提供就使用50x30的这个默认图片--> 
             <view>  
-              <block wx:if="{{item.tree.logo}}"> 
-                <image src="{{item.tree.logo}}"></image> 
+              <block wx:if="{{navRightItems.results[index].cover}}"> 
+                <image mode="aspectFit" v-if="obj.cover" src=" {{'http://127.0.0.1:8000' + navRightItems.results[index].cover}}">
+                </image> 
               </block> 
               <block wx:else>
                 <image src="http://temp.im/50x30"></image>
               </block>
-            </view>
+            </view> 
 <!--如果有文字，就用文字；无文字就用其他--> 
             <view wx:if="{{navRightItems.results[index].category==curIndex+1}}">
-              <text>{{navRightItems.results[index].name}}</text> 
+              <text bindtap="look" data-url="{{'http://127.0.0.1:8000' + navRightItems.results[index].model_file}}" >{{navRightItems.results[index].name}}</text> 
             </view> 
             <view wx:else> 
               <text>{{item.tree.desc2}}</text> 
             </view> 
-          </navigator> 
+          <!-- </navigator>  -->
         </view> 
       </block> 
     </view> 

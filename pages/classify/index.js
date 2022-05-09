@@ -1,10 +1,12 @@
 // pages/test/lqd.js
+const list = require('../../pages/lists/index.js')
 Page({ 
   data: { 
     navLeftItems: [], 
     navRightItems: [], 
     curNav: 1, 
-    curIndex: 0 
+    curIndex: 0,
+    url:""
   }, 
   onLoad: function() { 
   // 加载的使用进行网络访问，把需要的数据设置到data数据对象 
@@ -56,7 +58,19 @@ Page({
       },
     }) 
   },
-  
+  look(e){
+    let url=e.target.dataset.url;
+    console.log(url)
+    if(!url)
+      url=this.data.url;
+    wx.navigateTo({
+      url: "/pages/index/index",
+      success:(res)=> {
+        this.setData({url:""});
+        res.eventChannel.emit('acceptData', { url })
+      }
+    });
+  },
   //事件处理函数 
   switchRightTab: function(e) { 
   // 获取item项的id，和数组的下标值 
