@@ -2,7 +2,43 @@ const app = getApp()
 var openid = wx.getStorageSync("openid");
 Page({
   data: {
-    hasUserInfo: openid == ""
+    userInfo: {},
+    hasUserInfo: false,
+  },
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        var info = res.userInfo
+        this.setData({
+          userInfo: info,
+          hasUserInfo: true
+        })
+        wx.login({
+          success (res) {
+            if (res.code) {
+              //发起网络请求
+              wx.request({
+                url: 'http://127.0.0.1:8000/api/account/user',
+                method: 'POST',
+                header:{
+                  'content-type': 'application/json'
+                },
+                data: {
+                  code: res.code,
+                  nick_name: info.nickName,
+                  avatar_url: info.avatarUrl
+                }
+              })
+            } else {
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        })
+      }
+    })
   },
   doAuthorization: function(e) {
     var that = this;
@@ -15,41 +51,41 @@ Page({
       //授权
       console.log("用户信息如下:"),
       console.log(e.detail.userInfo)
-      // wx.login({
-      //   success: function(res) {
-      //     console.log('login:code', res.code)
-      //     //发送请求
-      //     wx.request({
-      //       url: app.globalData.userInterfaceUrl + 'record/' + res.code, //接口地址
-      //       method: 'GET',
-      //       header: {
-      //         'content-type': 'application/json' //默认值
-      //       },
-      //       success: function(res) {
-      //         console.log("record  成功", res.data)
-      //         var res = res.data;
-      //         if (res.error) { //发生错误
-      //           console.log("错误：", res.msg);
-      //         } else { //返回成功
-      //           try {
-      //             wx.setStorageSync('openid', res.data.openid)
-      //             openid = wx.getStorageSync("openid");
-      //           } catch (e) {
-      //             console.log("wx.login 错误", e);
-      //           }
-      //           //加载用户信息
-      //           that.loadUserInfo();
-      //           that.setData({ //设置变量
-      //             hasUserInfo: false
-      //           });
-      //         }
-      //       },
-      //       fail: function(err) {
-      //         console.log("record  失败", err);
-      //       }
-      //     })
-      //   }
-      // })
+      wx.login({
+        success: function(res) {
+          console.log('login:code', res.code)
+          //发送请求
+          wx.request({
+            url: app.globalData.userInterfaceUrl + 'record/' + res.code, //接口地址
+            method: 'GET',
+            header: {
+              'content-type': 'application/json' //默认值
+            },
+            success: function(res) {
+              console.log("record  成功", res.data)
+              var res = res.data;
+              if (res.error) { //发生错误
+                console.log("错误：", res.msg);
+              } else { //返回成功
+                try {
+                  wx.setStorageSync('openid', res.data.openid)
+                  openid = wx.getStorageSync("openid");
+                } catch (e) {
+                  console.log("wx.login 错误", e);
+                }
+                //加载用户信息
+                that.loadUserInfo();
+                that.setData({ //设置变量
+                  hasUserInfo: false
+                });
+              }
+            },
+            fail: function(err) {
+              console.log("record  失败", err);
+            }
+          })
+        }
+      })
     }
  
   },

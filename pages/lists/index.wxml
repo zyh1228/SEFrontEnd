@@ -6,7 +6,7 @@
     <button type="primary" bindtap="scanCode">扫码</button>
   </view>
   <view>
-    <view data-url='http://cdn.dodream.top/haha.obj?key=joelee' bindtap="look" >柜子</view>
+    <view data-url='https://sanyuered.github.io/gltf/robot.glb' bindtap="look" >柜子</view>
     <view data-url='http://cdn.dodream.top/male02.obj?key=joelee' bindtap="look" >人</view>
     <view data-url='http://cdn.dodream.top/file2.obj?key=joelee' bindtap="look" >haha</view>
     <view data-url='http://cdn.dodream.top/male02.mtl?key=joelee' bindtap="look" >male02mtl</view>
