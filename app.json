@@ -3,7 +3,8 @@
     "pages/lists/index",
     "pages/index/index",
     "pages/classify/index",
-    "pages/mine/index"
+    "pages/mine/index",
+    "pages/package_3d_viewer/pages/camera/camera"
   ],
   "window": {
     "backgroundTextStyle": "light",

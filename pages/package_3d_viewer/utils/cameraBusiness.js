@@ -1,6 +1,6 @@
 const { createScopedThreejs } = require('threejs-miniprogram');
-const { registerGLTFLoader } = require('../../utils/GLTFLoader.js');
-const deviceOrientationControl = require('../../utils/DeviceOrientationControl.js');
+const { registerGLTFLoader } = require('../../../utils/GLTFLoader');
+const deviceOrientationControl = require('../../../utils/DeviceOrientationControl.js');
 const deviceMotionInterval = 'ui';
 var camera, scene, renderer;
 var canvas;

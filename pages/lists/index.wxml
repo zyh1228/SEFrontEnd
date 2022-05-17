@@ -15,4 +15,9 @@
     <view data-url='http://cdn.dodream.top/m2.mtl?key=joelee' bindtap="look" >m2</view>
     <view data-url='http://cdn.dodream.top/m2.obj?key=joelee' bindtap="look" >m22</view>
   </view>
+  <view class="weui-media-box__info">
+    <navigator url="../package_3d_viewer/pages/camera/camera" class="marginTop10">
+      <button class="weui-btn" type="primary">3D Viewer</button>
+    </navigator>
+  </view>
 </view>

@@ -26,8 +26,10 @@ Page({
         app.THREE = THREE;
         if (data.url.endsWith(".mtl"))
           viewer.loadObjAndMtl(data.url);
-        else
+        else if(data.url.endsWith(".obj"))
           viewer.loaderObj(data.url);
+        else
+          viewer.loaderGltf(data.url)
       });
     })
   },
