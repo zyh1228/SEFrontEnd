@@ -17,8 +17,8 @@ Page({
       wx.createSelectorQuery().select('#canvas').node().exec((res) => {
         const canvas = res[0].node;
         let [width, height] = [app.globalData.width, app.globalData.height];
-       canvas.width=width;
-       canvas.height=height;
+        canvas.width=width;
+        canvas.height=height;
         const THREE = createScopedThreejs(canvas);
         const viewer = new Viewer();
         viewer.init(canvas, THREE);
