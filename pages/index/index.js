@@ -29,7 +29,13 @@ Page({
         else if(data.url.endsWith(".obj"))
           viewer.loaderObj(data.url);
         else
-          viewer.loaderGltf(data.url)
+          wx.navigateTo({
+            url: "/pages/package_3d_viewer/pages/camera/camera",
+            success:(res)=> {
+              this.setData({url:""});
+              res.eventChannel.emit('acceptData', { url })
+            }
+          });
       });
     })
   },

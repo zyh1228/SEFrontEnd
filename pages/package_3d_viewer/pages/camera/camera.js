@@ -3,7 +3,7 @@ const canvasId = 'canvas1';
 // a gltf model url
 // const modelUrl = 'https://sanyuered.github.io/gltf/robot.glb';
 // localhost url
-const modelUrl = 'https://sanyuered.github.io/gltf/robot.glb';
+var modelUrl = data.url;
 var isDeviceMotion = false;
 var isIOS = false;
 

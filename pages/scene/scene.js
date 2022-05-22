@@ -191,34 +191,34 @@ class Viewer {
       }
     );
   }
-  // loaderGltf(url){
-  //   console.log(url);
-  //   const THREE = this.THREE;
-  //     // registerGLTFLoader(THREE);
-  //     var loader = new THREE.GLTFLoader();
-  //     wx.showLoading({
-  //         title: 'Loading Model...',
-  //     });
-  //     loader.load(modelUrl,
-  //         function (gltf) {
-  //             console.log('loadModel', 'success');
-  //             var model = gltf.scene;
-  //             // save model
-  //             mainModel = model;
-  //             scene.add(model);
-  //             wx.hideLoading();
-  //         },
-  //         null,
-  //         function (error) {
-  //             console.log('loadModel', error);
-  //             wx.hideLoading();
-  //             wx.showToast({
-  //                 title: 'Loading model failed.',
-  //                 icon: 'none',
-  //                 duration: 3000,
-  //             });
-  //         });
-  // }
+  loaderGltf(url){
+    console.log(url);
+    const THREE = this.THREE;
+      registerGLTFLoader(THREE);
+      var loader = new THREE.GLTFLoader();
+      wx.showLoading({
+          title: 'Loading Model...',
+      });
+      loader.load(modelUrl,
+          function (gltf) {
+              console.log('loadModel', 'success');
+              var model = gltf.scene;
+              // save model
+              mainModel = model;
+              scene.add(model);
+              wx.hideLoading();
+          },
+          null,
+          function (error) {
+              console.log('loadModel', error);
+              wx.hideLoading();
+              wx.showToast({
+                  title: 'Loading model failed.',
+                  icon: 'none',
+                  duration: 3000,
+              });
+          });
+  }
   loadObjAndMtl(mtlUrl){
     let objLoader = this.objLoader;
     let url=mtlUrl.replace(".mtl",".obj");
