@@ -10,7 +10,7 @@ import { pointPick } from '../../utils/pointPick.js';
 const app = getApp()
 
 Page({
-  data: { isMove: false,showMtls:"none" },
+  data: { isMove: false,showMtls:"none" ,url:""},
   onLoad: function (option) {
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('acceptData', function (data) {
@@ -24,16 +24,17 @@ Page({
         viewer.init(canvas, THREE);
         app.Viewer = viewer;
         app.THREE = THREE;
-        if (data.url.endsWith(".mtl"))
+        console.log(data.url);
+        if (data.url.endsWith(".mtl?key=joelee") || data.url.endsWith(".mtl"))
           viewer.loadObjAndMtl(data.url);
-        else if(data.url.endsWith(".obj"))
+        else if(data.url.endsWith(".obj?key=joelee") || data.url.endsWith(".obj"))
           viewer.loaderObj(data.url);
         else
           wx.navigateTo({
             url: "/pages/package_3d_viewer/pages/camera/camera",
             success:(res)=> {
-              this.setData({url:""});
-              res.eventChannel.emit('acceptData', { url })
+              console.log(data.url)
+              res.eventChannel.emit('acceptData',  data.url )
             }
           });
       });

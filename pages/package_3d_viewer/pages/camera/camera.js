@@ -3,7 +3,8 @@ const canvasId = 'canvas1';
 // a gltf model url
 // const modelUrl = 'https://sanyuered.github.io/gltf/robot.glb';
 // localhost url
-var modelUrl = data.url;
+// var modelUrl = 'https://sanyuered.github.io/gltf/robot.glb';
+// var modelUrl = {data.url};
 var isDeviceMotion = false;
 var isIOS = false;
 
@@ -11,16 +12,20 @@ Page({
   data: {
     devicePosition: 'back',
   },
-  onLoad() {
-    const system = wx.getSystemInfoSync().system;
-    // if iOS
-    if (system.indexOf('iOS') !== -1) {
-      isIOS = true;
-    }
-    setTimeout(function(){
-      cameraBusiness.initThree(canvasId, modelUrl,isIOS);
-    },150);
-   
+  onLoad: function(option) {
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('acceptData', function (data) {
+      var modelUrl = data;
+      console.log(modelUrl)
+      const system = wx.getSystemInfoSync().system;
+      // if iOS
+      if (system.indexOf('iOS') !== -1) {
+        isIOS = true;
+      }
+      setTimeout(function(){
+        cameraBusiness.initThree(canvasId, modelUrl,isIOS);
+      },150);
+    })
   },
   onUnload() {
     cameraBusiness.stopAnimate();
