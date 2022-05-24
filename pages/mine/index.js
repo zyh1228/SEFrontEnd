@@ -21,7 +21,7 @@ Page({
             if (res.code) {
               //发起网络请求
               wx.request({
-                url: 'http://127.0.0.1:8000/api/account/user',
+                url: 'http://' + app.globalData.HOST + '/api/account/user',
                 method: 'POST',
                 header:{
                   'content-type': 'application/json'

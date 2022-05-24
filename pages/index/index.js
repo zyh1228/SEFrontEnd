@@ -8,9 +8,9 @@ import { pointPick } from '../../utils/pointPick.js';
 
 //获取应用实例
 const app = getApp()
-
+var url = ""
 Page({
-  data: { isMove: false,showMtls:"none" ,url:""},
+  data: { isMove: false,showMtls:"none" ,url: String},
   onLoad: function (option) {
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('acceptData', function (data) {
@@ -26,8 +26,12 @@ Page({
         app.THREE = THREE;
         console.log(data.url);
         if (data.url.endsWith(".mtl?key=joelee") || data.url.endsWith(".mtl"))
+          url = data.url,
+          console.log(url),
           viewer.loadObjAndMtl(data.url);
         else if(data.url.endsWith(".obj?key=joelee") || data.url.endsWith(".obj"))
+          url = data.url,
+          console.log(url),
           viewer.loaderObj(data.url);
         else
           wx.navigateTo({
@@ -86,5 +90,16 @@ Page({
   },
   onHide() {
     app.Viewer.clear();
+  },
+  trans(){
+    wx.navigateTo({
+      url: "/pages/package_3d_viewer/pages/camera/camera",
+      success:(res)=> {
+        console.log(url)
+        url = url.replace('.obj','.gltf')
+        console.log(url)
+        res.eventChannel.emit('acceptData',  url )
+      }
+    });
   }
 })

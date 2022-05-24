@@ -1,12 +1,15 @@
 // pages/test/lqd.js
 const list = require('../../pages/lists/index.js')
+var app = getApp()
+
 Page({ 
   data: { 
     navLeftItems: [], 
     navRightItems: [], 
     curNav: 1, 
     curIndex: 0,
-    url:""
+    url:"",
+    host: String
   }, 
   onLoad: function() { 
   // 加载的使用进行网络访问，把需要的数据设置到data数据对象 
@@ -16,7 +19,7 @@ Page({
   gteData: function(curIndex){
     var that = this  
     wx.request({ 
-      url: 'http://127.0.0.1:8000/api/model/obj?category=' + curIndex, 
+      url: 'http://' + app.globalData.HOST + '/api/model/obj?category=' + curIndex, 
       method: 'GET', 
       data: {}, 
       header: { 
@@ -37,7 +40,7 @@ Page({
       },
     }) 
     wx.request({ 
-      url: 'http://127.0.0.1:8000/api/model/category', 
+      url: 'http://' + app.globalData.HOST + '/api/model/category', 
       method: 'GET', 
       data: {}, 
       header: { 
@@ -46,7 +49,8 @@ Page({
       success: function(res) { 
         console.log(res) 
         that.setData({ 
-        navLeftItems: res.data.data
+        navLeftItems: res.data.data,
+        host: app.globalData.HOST
       })
       } ,
       fail: function(err) { //请求失败
