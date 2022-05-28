@@ -30,6 +30,9 @@ Page({
   onUnload() {
     cameraBusiness.stopAnimate();
     cameraBusiness.stopDeviceMotion();
+    wx.redirectTo({
+      url: '../classify/index'
+    })
   },
   onError_callback(){
     wx.showToast({
