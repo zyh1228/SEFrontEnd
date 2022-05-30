@@ -6,6 +6,8 @@
     <button type="primary" bindtap="scanCode">扫码</button>
   </view>
   <view>
+    <view data-url='2b7e2786186847eab2ee6876e0aced31' bindtap="look2" >沙发椅</view>
+    <view data-url='dbddbaf0a9f1484ca0c8dbbd1b0f70f9' bindtap="look2" >鞋柜</view>
     <view data-url='https://sanyuered.github.io/gltf/robot.glb' bindtap="look" >柜子</view>
     <view data-url='http://cdn.dodream.top/male02.obj?key=joelee' bindtap="look" >人</view>
     <view data-url='http://cdn.dodream.top/file2.obj?key=joelee' bindtap="look" >haha</view>
@@ -14,10 +16,5 @@
     <view data-url='http://cdn.dodream.top/mu.mtl?key=joelee' bindtap="look" >wenli</view>
     <view data-url='http://cdn.dodream.top/m2.mtl?key=joelee' bindtap="look" >m2</view>
     <view data-url='http://cdn.dodream.top/m2.obj?key=joelee' bindtap="look" >m22</view>
-  </view>
-  <view class="weui-media-box__info">
-    <navigator url="../package_3d_viewer/pages/camera/camera" class="marginTop10">
-      <button class="weui-btn" type="primary">3D Viewer</button>
-    </navigator>
   </view>
 </view>

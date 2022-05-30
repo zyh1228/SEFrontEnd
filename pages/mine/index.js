@@ -145,5 +145,10 @@ Page({
     var that = this;
     console.log("openid:", openid);
     that.loadUserInfo();
+  },
+  toadd: function(){
+    wx.navigateTo({
+      url: "/pages/add/index",
+    });
   }
 })

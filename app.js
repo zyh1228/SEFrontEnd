@@ -23,7 +23,7 @@ App({
   },
   globalData: {
     height:0,width:0,
-    HOST: '192.168.43.223:8000' 
+    HOST: '127.0.0.1:8000' 
   },
   THREE:null,
   Viewer:null,

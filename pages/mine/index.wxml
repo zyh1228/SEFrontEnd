@@ -13,7 +13,7 @@
 </view>
 <view class="hr"></view>
 <view class='item'>
-  <view class="title" open-type="getPhoneNumber" bindtap="">手机绑定</view>
+  <view class="title" open-type="getPhoneNumber" bindtap="toadd">添加</view>
   <view class="detail2">
     <text>></text>
   </view>
