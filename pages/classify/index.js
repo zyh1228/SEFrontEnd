@@ -62,18 +62,47 @@ Page({
       },
     }) 
   },
-  look(e){
-    let url=e.target.dataset.url;
-    console.log(url)
-    if(!url)
-      url=this.data.url;
-    wx.navigateTo({
-      url: "/pages/index/index",
-      success:(res)=> {
-        this.setData({url:""});
-        res.eventChannel.emit('acceptData', { url })
-      }
-    });
+  // look(e){
+  //   let url=e.target.dataset.url;
+  //   console.log(url)
+  //   if(!url)
+  //     url=this.data.url;
+  //   wx.navigateTo({
+  //     url: "/pages/index/index",
+  //     success:(res)=> {
+  //       this.setData({url:""});
+  //       res.eventChannel.emit('acceptData', { url })
+  //     }
+  //   });
+  // },
+  getModel(e){
+    let id=e.target.dataset.id;
+    console.log(id)
+    wx.request({ 
+      url: 'http://' + app.globalData.HOST + '/api/model/obj?id=' + id, 
+      method: 'GET', 
+      data: {}, 
+      header: { 
+      'Content-Type': 'application/json' 
+      }, 
+      success: function(res) { 
+        console.log(res) 
+        let url = 'http://' + app.globalData.HOST + res.data.data.model_file
+        wx.navigateTo({
+          url: "/pages/index/index",
+          success:(res)=> {
+            res.eventChannel.emit('acceptData', { url })
+          }
+        });
+      } ,
+      fail: function(err) { //请求失败
+        wx.showToast({
+          title: '请求失败',
+          icon: 'fail',
+          duration: 2000
+        })
+      },
+    }) 
   },
   //事件处理函数 
   switchRightTab: function(e) { 

@@ -30,7 +30,7 @@
             </view> 
 <!--如果有文字，就用文字；无文字就用其他--> 
             <view wx:if="{{navRightItems.results[index].category==curIndex+1}}">
-              <text bindtap="look" data-url="{{'http://' + host + navRightItems.results[index].model_file}}" >{{navRightItems.results[index].name}}</text> 
+              <text bindtap="getModel" data-id="{{navRightItems.results[index].id}}">{{navRightItems.results[index].name}}</text> 
             </view> 
             <view wx:else> 
               <text>{{item.tree.desc2}}</text> 
