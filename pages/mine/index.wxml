@@ -29,7 +29,7 @@
 
 <view class="line"></view>
 <view class="item">
-  <view class="title">意见反馈</view>
+  <view class="title">历史记录</view>
   <view class="detail2">
     <text> ></text>
   </view>
