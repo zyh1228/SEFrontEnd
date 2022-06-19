@@ -1,4 +1,6 @@
 // pages/test/lqd.js
+import api from '../api'
+
 const list = require('../../pages/lists/index.js')
 var app = getApp()
 
@@ -9,14 +11,20 @@ Page({
     curNav: 1, 
     curIndex: 0,
     url:"",
-    host: String
+    host: app.globalData.HOST
   }, 
   onLoad: function() { 
   // 加载的使用进行网络访问，把需要的数据设置到data数据对象 
-    this.gteData(1)
+    api.getCategory((categoryList) => {
+      this.setData({ 
+        navLeftItems: categoryList
+      })
+      this.getModelData(this.data.navLeftItems[0].category_name)
+    })
+
   },
   
-  gteData: function(curIndex){
+  getModelData: function(curIndex){
     var that = this  
     wx.request({ 
       url: 'http://' + app.globalData.HOST + '/api/model/obj?category=' + curIndex, 
@@ -29,28 +37,6 @@ Page({
         console.log(res) 
         that.setData({ 
         navRightItems: res.data.data
-      })
-      } ,
-      fail: function(err) { //请求失败
-        wx.showToast({
-          title: '请求失败',
-          icon: 'fail',
-          duration: 2000
-        })
-      },
-    }) 
-    wx.request({ 
-      url: 'http://' + app.globalData.HOST + '/api/model/category', 
-      method: 'GET', 
-      data: {}, 
-      header: { 
-      'Content-Type': 'application/json' 
-      }, 
-      success: function(res) { 
-        console.log(res) 
-        that.setData({ 
-        navLeftItems: res.data.data,
-        host: app.globalData.HOST
       })
       } ,
       fail: function(err) { //请求失败
@@ -112,10 +98,9 @@ Page({
 
   // 把点击到的某一项，设为当前index 
     this.setData({ 
-    curNav: id, 
-    curIndex: index 
+      curNav: id, 
+      curIndex: index 
     }) 
-    console.log(e.target.dataset.name)
-    this.gteData(e.target.dataset.name)
+    this.getModelData(e.target.dataset.name)
   } 
 })

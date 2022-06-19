@@ -4,10 +4,10 @@
 <view class="container"> 
 <!--左侧栏--> 
   <view class="nav_left"> 
-    <block wx:for="{{navLeftItems}}"> 
+    <block wx:for="{{navLeftItems}}" wx:for-index="index" wx:for-item="item"> 
 <!--当前项的id等于item项的id，那个就是当前状态--> 
 <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用--> 
-      <view class="nav_left_items {{curNav == item.id ? 'active' : '' }}" bindtap="switchRightTab"   data-name="{{item.category_name}}" data-index="{{index}}" data-id="{{item.id}}">{{item.category_name}}
+      <view class="nav_left_items {{curIndex == index ? 'active' : '' }}" bindtap="switchRightTab"   data-name="{{item.category_name}}" data-index="{{index}}" data-id="{{item.id}}">{{item.category_name}}
       </view>
     </block> 
   </view> 
@@ -16,7 +16,7 @@
 <!--如果有数据，才遍历项--> 
     <view wx:if="{{navRightItems.results}}"> 
       <block wx:for="{{navRightItems.results}}"> 
-        <view class="nav_right_items" > 
+        <view class="nav_right_items" bindtap="getModel" data-id="{{navRightItems.results[index].id}}"> 
           <!-- <navigator url="../classify/index?brand={{item.tree.id}}&typeid={{navRightItems.results[curIndex].category}}">  -->
   <!--用view包裹图片组合，如果有图片就用，无图片提供就使用50x30的这个默认图片--> 
             <view>  
@@ -29,12 +29,10 @@
               </block>
             </view> 
 <!--如果有文字，就用文字；无文字就用其他--> 
-            <view wx:if="{{navRightItems.results[index].category==curIndex+1}}">
-              <text bindtap="getModel" data-id="{{navRightItems.results[index].id}}">{{navRightItems.results[index].name}}</text> 
+            <view>
+              <text>{{navRightItems.results[index].name}}</text> 
             </view> 
-            <view wx:else> 
-              <text>{{item.tree.desc2}}</text> 
-            </view> 
+
           <!-- </navigator>  -->
         </view> 
       </block> 
