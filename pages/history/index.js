@@ -59,6 +59,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
     if (this.data.historyTotal > this.data.historyCurrentCount) {
       api.getHistoryList((historyList)=>{
         this.data.historyCurrentCount += historyList.total - this.data.historyCurrentCount > 10 ? 10 : historyList.total - this.data.historyCurrentCount
@@ -70,13 +77,6 @@ Page({
         })
       }, 10, this.data.historyCurrentCount)
     }
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
   },
 
   /**
