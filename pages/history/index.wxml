@@ -2,7 +2,7 @@
 <view class="container"> 
 <!--左侧栏--> 
   <view class="nav_left">
-    <block wx:for="{{historyList}}" wx:for-index="index" wx:for-item="item"> 
+    <block wx:for="{{historyItems}}" wx:for-index="index" wx:for-item="item"> 
       <view class="nav_left_items" bindtap="switchRightTab"   data-name="{{item.category_name}}" data-index="{{index}}" data-id="{{item.id}}">{{item.category_name}}
       </view>
     </block> 

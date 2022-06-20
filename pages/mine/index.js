@@ -137,9 +137,14 @@ Page({
     console.log("openid:", openid);
     that.loadUserInfo();
   },
-  toadd: function(){
+  toadd: function() {
     wx.navigateTo({
       url: "/pages/add/index",
+    });
+  },
+  toHistory: function() {
+    wx.navigateTo({
+      url: "/pages/history/index",
     });
   }
 })

@@ -70,9 +70,18 @@ function getModelDetail(success, modelID) {
   baseRequest('http://' + app.globalData.HOST + '/api/model/obj', 'GET', success, {params})
 }
 
+function getHistoryList(success, limit, offset) {
+  let params = {
+    limit: limit,
+    offset: offset
+  }
+  baseRequest('http://' + app.globalData.HOST + '/api/history/history', 'GET', success, {params})
+}
+
 module.exports = {
   userLogin,
   getCategory,
   getModelList,
   getModelDetail,
+  getHistoryList,
 }

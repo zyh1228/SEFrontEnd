@@ -28,7 +28,7 @@
 </view>
 
 <view class="line"></view>
-<view class="item">
+<view class="item" bindtap="toHistory">
   <view class="title">历史记录</view>
   <view class="detail2">
     <text> ></text>
