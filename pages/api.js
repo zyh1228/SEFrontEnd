@@ -9,33 +9,70 @@ function baseRequest(url, method, callback, options, contentType) {
   if (contentType === undefined){
     contentType = 'application/json'
   }
-  
+  var searchParams = ''
+  for (let key in params) {
+    searchParams += '&' + String(key) + '=' + String(params[key])
+  }
+  if (searchParams !== '') {
+    url += '?' + searchParams.substring(1)
+  }
+  console.log(url)
+
   wx.request({
     url: url,
     method: method, 
-      data: data, 
-      header: { 
-        'Content-Type': contentType
-      }, 
-      success: function(res) { 
+    data: data, 
+    header: { 
+      'Content-Type': contentType,
+      'cookie': wx.getStorageSync('Set-Cookie')
+    }, 
+    success: function(res) { 
+      if (res.data.error === null) {
         callback(res.data.data)
         var cookie = res.cookies
-      } ,
-      fail: function(err) { //请求失败
-        callback('error')
-        wx.showToast({
-          title: '请求失败',
-          icon: 'fail',
-          duration: 2000
-        })
-      },
+        console.log(cookie)
+        if (res.header['Set-Cookie'] != '') {
+          wx.setStorageSync('Set-Cookie', res.header['Set-Cookie'])
+        }
+      }
+    } ,
+    fail: function(err) { //请求失败
+      //callback('error')
+      wx.showToast({
+        title: '请求失败',
+        icon: 'fail',
+        duration: 2000
+      })
+    },
   })
+}
+
+function userLogin(success, code, nickname, avatarURL) {
+  let data = {
+    code: code,
+    nick_name: nickname,
+    avatar_url: avatarURL
+  }
+  baseRequest('http://' + app.globalData.HOST + '/api/account/user', 'POST', success, {data})
 }
 
 function getCategory(success) {
   baseRequest('http://' + app.globalData.HOST + '/api/model/category', 'GET', success)
 }
 
+function getModelList(success, category) {
+  let params = {category: category}
+  baseRequest('http://' + app.globalData.HOST + '/api/model/obj', 'GET', success, {params})
+}
+
+function getModelDetail(success, modelID) {
+  let params = {id: modelID}
+  baseRequest('http://' + app.globalData.HOST + '/api/model/obj', 'GET', success, {params})
+}
+
 module.exports = {
+  userLogin,
   getCategory,
+  getModelList,
+  getModelDetail,
 }

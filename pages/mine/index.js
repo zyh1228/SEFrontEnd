@@ -1,5 +1,8 @@
+import api from '../api'
+
 const app = getApp()
 var openid = wx.getStorageSync("openid");
+
 Page({
   data: {
     userInfo: {},
@@ -19,19 +22,7 @@ Page({
         wx.login({
           success (res) {
             if (res.code) {
-              //发起网络请求
-              wx.request({
-                url: 'http://' + app.globalData.HOST + '/api/account/user',
-                method: 'POST',
-                header:{
-                  'content-type': 'application/json'
-                },
-                data: {
-                  code: res.code,
-                  nick_name: info.nickName,
-                  avatar_url: info.avatarUrl
-                }
-              })
+              api.userLogin(()=>{}, res.code, info.nickName, info.avatarUrl)
             } else {
               console.log('登录失败！' + res.errMsg)
             }
