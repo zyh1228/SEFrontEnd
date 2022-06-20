@@ -29,7 +29,6 @@ Page({
         historyTotal: historyList.total,
         historyCurrentCount: count
       })
-      console.log(this.data.historyItems)
     }, 10, 0)
   },
 
@@ -126,5 +125,11 @@ Page({
 
   onDeleteItem:function (e) {
     let id = e.currentTarget.dataset.id
+    api.deleteHistory(()=>{
+      this.onLoad()
+      this.setData({
+        delBtnIndex: -1
+      })
+    }, id)
   }
 })

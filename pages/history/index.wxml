@@ -2,24 +2,29 @@
 <view class='container'>
   <!--顶部标题栏-->
   <view class='page-header'>
-    <text class='page-title' style="color: aqua;">历史记录</text>
+    <text class='page-title'>刷新中...</text>
   </view>
   <!--列表--> 
   <view class="content">
-    <view class="page-list " wx:for="{{historyItems}}" wx:key="id">
-      <view class="item {{index===delBtnIndex?'show':''}}" bindtouchstart="onTouchStart" data-id="{{item.id}}" data-index = "{{index}}"
-      bindtouchmove="onTouchMove">
-        <view class="thumb">
-          <image src="{{'http://' + host + item.obj_model.cover}}"></image>
+    <block  wx:if="{{historyTotal}}" >
+      <view class="page-list" wx:for="{{historyItems}}" wx:key="id">
+        <view class="item {{index===delBtnIndex?'show':''}}" bindtouchstart="onTouchStart" data-id="{{item.id}}" data-index = "{{index}}"
+        bindtouchmove="onTouchMove">
+          <view class="thumb">
+            <image src="{{'http://' + host + item.obj_model.cover}}"></image>
+          </view>
+          <view class="info">
+            <text class="info list-name">{{item.obj_model.name}} </text>
+            <text class="info list-time">{{item.view_time}}</text>
+          </view>
+          <text class="info count">次数</text> 
         </view>
-        <view class="info">
-          <text class="info list-name">{{item.obj_model.name}} </text>
-          <text class="info list-time">{{item.view_time}}</text>
-        </view>
-        <text class="info count">次数</text> 
+        <view class="delete {{index===delBtnIndex?'show':''}}" bindtap="onDeleteItem" data-index="{{index}}" 
+        data-id="{{item.id}}">删除</view>
       </view>
-      <view class="delete {{index===delBtnIndex?'show':''}}" bindtap="onDeleteItem" data-index="{{index}}" 
-      data-id="{{item.id}}">删除</view>
-    </view>
+    </block>
+    <block wx:else>
+      <text class="tip">还没有历史记录哦</text>
+    </block>
   </view>
 </view>

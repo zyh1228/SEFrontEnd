@@ -3,14 +3,17 @@
   display: flex;
   justify-content: center;
   border-bottom: 1rpx solid #efefef;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .page-title {
   padding: 20rpx 40rpx;
-  color: #efefef;
-  font-size: 38rpx;
+  color: #000000;
+  font-size: 20rpx;
   text-align: center;
 }
-.page-list{
+.page-list {
   width: 90%;
   display: flex;
   flex-direction: row;
@@ -21,8 +24,11 @@
   margin: 15;
   box-shadow: 1rpx 1rpx 15rpx #ddd;
   overflow: hidden;
+  background-color: white;
+  z-index: 1;
 }
-.item{
+
+.item {
   width: 100%;
   display: flex;
   align-items: center;
@@ -32,14 +38,13 @@
   transition: all0 0.5s;
 }
 
-
-.thumb image{
+.thumb image {
   width: 150rpx;
-  height: 150rpx;
+  height: 100rpx;
   margin-right: 15rpx;
 }
 
-.content{
+.content {
   height: 100%;
   width: 100%;
   display: flex;
@@ -47,20 +52,21 @@
   align-items: center;
 }
 
-.info{
+.info {
   float: right;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.info .list-name{
+.info .list-name {
   font-size: 80rpx;
 }
 
-.info .list-time{
+.info .list-time {
   font-size: 30rpx;
 }
+
 .delete {
   background-color: #d81e06;
   width: 180rpx;
@@ -73,6 +79,15 @@
   transition: all 0.5s;
 }
 
-.show{
+.show {
   transform: translateX(0rpx);
+}
+
+.tip{
+  width: 100%;
+  height: 80rpx;
+  font-size: 40rpx;
+  text-align: center;
+  background-color: white;
+  z-index: 1;
 }
