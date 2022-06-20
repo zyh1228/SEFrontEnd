@@ -16,6 +16,7 @@ function baseRequest(url, method, callback, options, contentType) {
   if (searchParams !== '') {
     url += '?' + searchParams.substring(1)
   }
+
   console.log(url)
 
   wx.request({
@@ -29,8 +30,6 @@ function baseRequest(url, method, callback, options, contentType) {
     success: function(res) { 
       if (res.data.error === null) {
         callback(res.data.data)
-        var cookie = res.cookies
-        console.log(cookie)
         if (res.header['Set-Cookie'] != '') {
           wx.setStorageSync('Set-Cookie', res.header['Set-Cookie'])
         }
@@ -78,10 +77,16 @@ function getHistoryList(success, limit, offset) {
   baseRequest('http://' + app.globalData.HOST + '/api/history/history', 'GET', success, {params})
 }
 
+function deleteHistory(success, id) {
+  let params = {id: id}
+  baseRequest('http://' + app.globalData.HOST + '/api/history/history', 'DELETE', success, {params})
+}
+
 module.exports = {
   userLogin,
   getCategory,
   getModelList,
   getModelDetail,
   getHistoryList,
+  deleteHistory,
 }
