@@ -19,7 +19,7 @@ Page({
       this.setData({ 
         navLeftItems: categoryList
       })
-      this.showModelList(0)
+      this.showModelList(this.data.curIndex)
     })
   },
   
