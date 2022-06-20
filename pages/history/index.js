@@ -59,7 +59,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    api.getHistoryList((historyList)=>{
+      let count = historyList.total > 10 ? 10 : historyList.total
+      this.setData({
+        historyItems: historyList.results,
+        historyTotal: historyList.total,
+        historyCurrentCount: count
+      })
+      wx.stopPullDownRefresh()
+      console.log(this.data.historyItems)
+    }, 10, 0)
   },
 
   /**

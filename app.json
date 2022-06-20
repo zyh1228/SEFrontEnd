@@ -5,13 +5,16 @@
     "pages/classify/index",
     "pages/mine/index",
     "pages/package_3d_viewer/pages/camera/camera",
-    "pages/add/index"
+    "pages/add/index",
+    "pages/history/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#000000",
