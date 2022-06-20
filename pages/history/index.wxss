@@ -1,44 +1,78 @@
 /* pages/mine/history.wxss */
-page{ 
-  background: #f5f5f5; 
- } 
- /*总体主盒子*/ 
- .container { 
-  position: relative; 
-  width: 100%; 
-  height: 100%; 
-  background-color: #fff; 
-  color: #939393; 
- } 
-  
- /*左侧栏主盒子*/ 
- .nav_left{ 
-  /*设置行内块级元素（没使用定位）*/ 
-  display: inline-block; 
-  width: 100%; 
-  height: 100%; 
-  /*主盒子设置背景色为灰色*/ 
-  background: #f5f5f5; 
-  text-align: center; 
- } 
- /*左侧栏list的item*/ 
- .nav_left .nav_left_items{ 
-  /*每个高30px*/ 
-  height: 30px; 
-  /*垂直居中*/ 
-  line-height: 30px; 
-  /*再设上下padding增加高度，总高42px*/ 
-  padding: 6px 0; 
-  /*只设下边线*/ 
-  border-bottom: 1px solid #dedede; 
-  /*文字14px*/ 
-  font-size: 14px; 
-  /*背景色变成白色*/ 
-  background: #fff; 
- } 
- /*左侧栏list的item被选中时*/ 
- .nav_left .nav_left_items.active{ 
-  /*背景色变成白色*/ 
-  background: #fff; 
- } 
-  
+.page-header {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1rpx solid #efefef;
+}
+.page-title {
+  padding: 20rpx 40rpx;
+  color: #efefef;
+  font-size: 38rpx;
+  text-align: center;
+}
+.page-list{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15rpx;
+  border: 1rpx solid #efefef;
+  border-radius: 8rpx;
+  margin: 15;
+  box-shadow: 1rpx 1rpx 15rpx #ddd;
+  overflow: hidden;
+}
+.item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transform: translateX(160rpx);
+  margin-right: 10rpx;
+  margin-left: -160rpx;
+  transition: all0 0.5s;
+}
+
+
+.thumb image{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 15rpx;
+}
+
+.content{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info{
+  float: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.info .list-name{
+  font-size: 80rpx;
+}
+
+.info .list-time{
+  font-size: 30rpx;
+}
+.delete {
+  background-color: #d81e06;
+  width: 180rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transform: translateX(190rpx);
+  transition: all 0.5s;
+}
+
+.show{
+  transform: translateX(0rpx);
+}
