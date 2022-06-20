@@ -1,0 +1,19 @@
+<!--pages/detail/index.wxml-->
+<!--pages/item/item.wxml-->
+<!--详情页-->
+<!--滚动列表-->
+<scroll-view >
+  <view class='meta'>
+    <image class='poster' src="{{'http://' + host + modelDetail.cover}}" background-size="cover"></image>
+    <text class='title'>{{"名称: "}}({{modelDetail.name}})</text>
+    <text class='info'>上传用户:{{modelDetail.created_by.nick_name}}</text>
+    <text class='info'>最后修改时间: </text>
+    <text class='info'>{{time}}</text>
+    <text class='info'>类型: {{modelDetail.file_type}}</text>
+  </view>
+  <view class='summary'>
+    <text class='label'>描述：</text>
+    <text class='content'>{{modelDetail.description}}</text>
+  </view>
+    <button bindtap="getModel">模型查看</button>
+</scroll-view>

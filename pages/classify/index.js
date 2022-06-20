@@ -79,5 +79,11 @@ Page({
       curIndex: index 
     }) 
     this.showModelList(index)
-  } 
+  },
+  toDetail: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/detail/index?id=' + id
+    })
+  }
 })

@@ -16,7 +16,7 @@
 <!--如果有数据，才遍历项--> 
     <view wx:if="{{navRightItems.results}}"> 
       <block wx:for="{{navRightItems.results}}"> 
-        <view class="nav_right_items" bindtap="getModel" data-id="{{navRightItems.results[index].id}}"> 
+        <view class="nav_right_items" bindtap="toDetail" data-id="{{navRightItems.results[index].id}}"> 
           <!-- <navigator url="../classify/index?brand={{item.tree.id}}&typeid={{navRightItems.results[curIndex].category}}">  -->
   <!--用view包裹图片组合，如果有图片就用，无图片提供就使用50x30的这个默认图片--> 
             <view>  

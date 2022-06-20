@@ -82,7 +82,7 @@ Page({
     if (this.data.historyTotal > this.data.historyCurrentCount) {
       api.getHistoryList((historyList)=>{
         this.data.historyCurrentCount += historyList.total - this.data.historyCurrentCount > 10 ? 10 : historyList.total - this.data.historyCurrentCount
-        this.data.historyItems.push(...historyList.results)
+        this.data.historyItems.push(...historyList.results) 
         this.setData({
           historyItems: this.data.historyItems,
           historyTotal: historyList.total,

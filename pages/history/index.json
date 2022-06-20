@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "历史记录",
   "backgroundColor": "#F8F9FD",
-  "usingComponents": {}
+  "usingComponents": {},
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

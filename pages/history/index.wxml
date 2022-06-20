@@ -1,4 +1,5 @@
 <!--pages/mine/history.wxml-->
+<wxs src="../../utils/capture.wxs" module="tools" />
 <view class='container'>
   <!--顶部标题栏-->
   <view class='page-header'>
@@ -15,9 +16,9 @@
           </view>
           <view class="info">
             <text class="info list-name">{{item.obj_model.name}} </text>
-            <text class="info list-time">{{item.view_time}}</text>
+            <text class="info list-time">{{tools.subStr(item.view_time,0,10)}} {{tools.subStr(item.view_time,11,19)}}</text>
           </view>
-          <text class="info count">次数</text> 
+          <text class="info count">使用次数:{{item.view_count}}</text>
         </view>
         <view class="delete {{index===delBtnIndex?'show':''}}" bindtap="onDeleteItem" data-index="{{index}}" 
         data-id="{{item.id}}">删除</view>
