@@ -8,7 +8,6 @@ Page({
   data: { 
     navLeftItems: [], 
     navRightItems: [], 
-    curNav: 1, 
     curIndex: 0,
     url:"",
     host: app.globalData.HOST
@@ -32,19 +31,6 @@ Page({
       })
     }, this.data.navLeftItems[curIndex].category_name)
   },
-  // look(e){
-  //   let url=e.target.dataset.url;
-  //   console.log(url)
-  //   if(!url)
-  //     url=this.data.url;
-  //   wx.navigateTo({
-  //     url: "/pages/index/index",
-  //     success:(res)=> {
-  //       this.setData({url:""});
-  //       res.eventChannel.emit('acceptData', { url })
-  //     }
-  //   });
-  // },
   getModel(e){
     let id = e.currentTarget.dataset.id;
     api.getModelDetail((modelDetail)=>{
@@ -90,7 +76,6 @@ Page({
 
   // 把点击到的某一项，设为当前index 
     this.setData({ 
-      curNav: id, 
       curIndex: index 
     }) 
     this.showModelList(index)
