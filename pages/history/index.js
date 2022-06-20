@@ -1,6 +1,6 @@
 // pages/mine/history.js
 import api from '../api'
-
+var app = getApp()
 Page({
 
   /**
@@ -10,6 +10,12 @@ Page({
     historyItems: [],
     historyTotal: 0,
     historyCurrentCount: 0,
+    host: app.globalData.HOST,
+    delBtnIndex: -1,
+    touch: {
+      id: 0,
+      start: 0 
+    }
   },
 
   /**
@@ -93,5 +99,32 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  onTouchStart: function (e) {
+    let touch = {
+      id: e.currentTarget.dataset.id,
+      start: e.changedTouches["0"].clientX
+    }
+    this.setData({
+      touch: touch
+    })
+  },
+
+  onTouchMove:function (e) {
+    let index = e.currentTarget.dataset.index
+    if (this.data.touch.start - e.changedTouches["0"].clientX > 100) {
+      this.setData({
+        delBtnIndex: index
+      })
+    }else if (e.changedTouches["0"].clientX - this.data.touch.start > 100){
+      this.setData({
+        delBtnIndex: -1
+      })
+    }
+  },
+
+  onDeleteItem:function (e) {
+    let id = e.currentTarget.dataset.id
   }
 })
