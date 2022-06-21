@@ -25,7 +25,6 @@ Page({
     }
 
     api.addModel((res)=>{
-      console.log(res)
       that.setData({
         objModelId: res.id,
         allowUploadModel: true
