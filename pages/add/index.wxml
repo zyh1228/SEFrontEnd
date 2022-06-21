@@ -1,2 +1,55 @@
-<!--pages/add/index.wxml-->
-<text>这是添加界面</text>
+<!--pages/productReleased/productReleased.wxml-->
+<form bindsubmit="addModelInfo">
+  <view class='title'>
+    <view class='title_text'>
+      <text>名称：</text>
+      <input name="biaoti" type='text' value='{{biaoti}}' bindblur='titleBlur' placeholder="请输入模型名字"></input>
+    </view>
+  </view>
+
+  <view class='title'>
+    <view class='title_text'>
+      <text>描述：</text>
+      <input name="neirong" type='text' value='{{neirong}}' bindblur='priceBlur' placeholder="请描述模型"></input>
+    </view>
+  </view>
+  
+  <view class='title'>
+    <view class='title_text'>
+      <text>分类：</text>
+      <textarea name="zuozhe" class='textarea' value='{{zuozhe}}' bindblur='infoBlur' placeholder="请输入模型类别"></textarea>
+    </view>
+  </view>
+
+  <view class='title'>
+    <view class='title_text'>
+      <text>图片：</text>
+      <text name="fenlei" class='textarea'>请选择模型图片</text>
+    </view>
+  </view>
+  <view class='tu1'>   
+    <block wx:if="{{image}}">    
+      <view class='logoinfo'>      
+        <image class='logoinfo' mode="aspectFill" src='{{image}}' bindtap="previewImg" bindlongpress="deleteImg" name="headimage" ></image>
+      </view>
+    </block>
+    <block wx:else>
+      <image bindtap='upimg' class='tu' src="/image/add.png"></image>
+    </block>
+  </view>
+  <button wx:if="{{!allowUploadModel}}" form-type='submit' class='sureRelease'>下一步，上传文件</button>
+</form>
+
+<form wx:if="{{allowUploadModel}}" bindsubmit="formSubmit">
+  <view class='title'>
+    <view class='title_text'>
+      <text>model：</text>
+      <view name="lianjie" class='textarea' bindtap="upModel" bindlongpress="deleteModel">
+        <text wx:if="{{modelFile}}">{{modelFile.name}}</text>
+        <text wx:else>单击此处选择文件</text>
+      </view>
+    </view>
+  </view>
+  <button form-type='submit' class='sureRelease'>确认发布</button>
+</form>
+
