@@ -17,7 +17,10 @@
   <view class='title'>
     <view class='title_text'>
       <text>分类：</text>
-      <textarea name="zuozhe" class='textarea' value='{{zuozhe}}' bindblur='infoBlur' placeholder="请输入模型类别"></textarea>
+      <picker name="category" bindchange="pickerChange" value="{{index}}" range="{{categoryList}}" style="width: 500rpx; height: 52rpx; display: block; box-sizing: border-box">
+        <view wx:if="{{index == -1}}">请选择模型类别</view>
+        <view wx:else>{{categoryList[index]}}</view>
+      </picker>
     </view>
   </view>
 

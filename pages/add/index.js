@@ -9,6 +9,29 @@ Page({
     image: null,
     allowUploadModel: false,
     objModelId: null,
+    categoryList: [],
+    index: -1
+  },
+
+  onLoad(options) {
+    api.getCategory((categoryList)=>{
+      console.log(categoryList)
+      var list = []
+      for (let index in categoryList){
+        console.log(categoryList[index].category_name)
+        list.push(categoryList[index].category_name)
+      }
+      console.log(list)
+      this.setData({
+        categoryList: list
+      })
+    })
+  },
+
+  pickerChange: function(e) {
+    this.setData({
+      index: e.detail.value
+    })
   },
 
   //上传图片到服务器 
@@ -18,7 +41,7 @@ Page({
 
     var name = e.detail.value.biaoti 
     var description = e.detail.value.neirong
-    var category = e.detail.value.zuozhe
+    var category = that.data.categoryList[Number(e.detail.value.category)]
 
     if (!(name && description && category)) {
       return
